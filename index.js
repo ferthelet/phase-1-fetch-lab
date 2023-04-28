@@ -8,19 +8,25 @@ function fetchBooks() {
 
 function renderBooks(books) {
   const main = document.querySelector('main');
-  let counter = 0;
-  const fifthBook = 5;
+  let bookCounter = 0;
+  let sumPages = 0;
+  let fifthBook = '';
 
   books.forEach(book => {
     const h2 = document.createElement('h2');
-    counter++;
+    bookCounter++;
 
-    if (counter === fifthBook) {
-      h2.innerHTML = '5th book ==> ';
+    if (bookCounter === 5) {
+      fifthBook = book.name;
     } 
-    h2.innerHTML += book.name;
+    h2.innerHTML = book.name;
     main.appendChild(h2);
+    sumPages += book.numberOfPages;
   });
+
+  const summary = document.createElement('h2');
+  summary.innerHTML = `Total books: ${bookCounter} <br> Total pages: ${sumPages} <br> 5th book: ${fifthBook}`;
+  main.appendChild(summary);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
